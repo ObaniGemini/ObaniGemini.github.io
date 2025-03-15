@@ -8,18 +8,18 @@ uniform sampler2D colors;
 uniform float time;
 uniform float width;
 uniform float height;
+uniform int numNodes;
 
-const int numNodes = 9;
 
 float v(vec2 pos, float time) {
 	return pos.y + cos(time + pos.y * 5.0 + pos.x * 5.0) * 0.05 * pos.x * pos.x;
 }
 
-vec3 fun(vec2 pos, float time, sampler2D c) {
+vec3 fun(vec2 pos, float time, sampler2D c, int numNodes) {
 	float v1 = v(pos, time);
 	float mid = v1 < 0.0 || v1 > 1.0 ?
 		0.0 :
-		abs(float(int(v1 * float(numNodes) + 0.5)) - v1 * float(numNodes));
+		abs(float(int(v1 * float(numNodes) + 0.5)) - v1 * float(numNodes)) * 2.0;
 	return mix(vec3(0.0), texture2D(c, vec2(0.0, v1)).rgb, sqrt(sqrt(mid)));
 }
 
@@ -28,7 +28,7 @@ void main() {
 	pos.x *= 2.0;
 	pos.y = pos.y;
 
-	gl_FragColor.rgb = fun(pos, time, colors); 
+	gl_FragColor.rgb = fun(pos, time, colors, numNodes); 
 }`;
 
 
@@ -73,6 +73,7 @@ class Background {
 			this.time = this.gl.getUniformLocation(program, "time")
 			this.width = this.gl.getUniformLocation(program, "width")
 			this.height = this.gl.getUniformLocation(program, "height")
+			this.numNodes = this.gl.getUniformLocation(program, "numNodes")
 
 			this.texture = this.gl.createTexture();
 			this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture);
@@ -99,7 +100,7 @@ class Background {
 		draw()
 	}
 
-	setButtonTexture(buttons) {
+	setButtons(buttons) {
 		let genBMPUri = (width, pixels) => {
 			let LE = n => (n + 2**32).toString(16).match(/\B../g).reverse().join``;
 			let wh = LE(width) + LE(pixels.length/width/4);
@@ -125,6 +126,8 @@ class Background {
 			console.log(pixels)
 			this.image.src = genBMPUri(1, pixels);			
 			this.image.onload = () => this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGB, this.gl.RGB, this.gl.UNSIGNED_BYTE, this.image);
+			
+			this.gl.uniform1i(this.numNodes, buttons.length)
 
 			buttons.forEach((btn) => { btn.setAlpha(0.0) })
 		} else {

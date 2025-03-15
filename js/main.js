@@ -17,7 +17,7 @@ const main = () => {
 
 	background = new Background()
 	properties.forEach((prop) => BUTTONS.push(new Button(prop[0], prop[1], prop[2], prop[3])))
-	background.setButtonTexture(BUTTONS)
+	background.setButtons(BUTTONS)
 
 	resize()
 }
