@@ -16,6 +16,12 @@ html {
 	-webkit-tap-highlight-color: transparent;
 }
 
+canvas {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: -1;
+}
 
 body {
 	position: fixed;
@@ -26,6 +32,7 @@ body {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+	font-weight: bold;
 	font-family: sans-serif;
 	background-color: rgb(0, 0, 0);
 }
