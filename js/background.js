@@ -120,10 +120,9 @@ class Background {
 				pixels.push(btn.backgroundColor.b)
 				pixels.push(btn.backgroundColor.g)
 				pixels.push(btn.backgroundColor.r)
-				pixels.push(0)
+				pixels.push(255)
 			})
 
-			console.log(pixels)
 			this.image.src = genBMPUri(1, pixels);			
 			this.image.onload = () => this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGB, this.gl.RGB, this.gl.UNSIGNED_BYTE, this.image);
 			
