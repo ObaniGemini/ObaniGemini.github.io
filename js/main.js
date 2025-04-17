@@ -7,7 +7,7 @@ const main = () => {
 		['GitHub', new Color( 0, 0, 0 ), new Color( 255, 255, 255 ), 'https://github.com/ObaniGemini/'],
 		['Itch.io', new Color( 255, 255, 255 ), new Color( 0, 0, 0 ), 'https://obanigarage.itch.io/'],
 		['PropFight on Steam', new Color( 23, 29, 37 ), new Color( 255, 255, 255 ), 'https://store.steampowered.com/app/2881590/PropFight/'],
-		['Cocaine Diesel', new Color( 255, 204, 38 ), new Color( 0, 0, 0 ), 'https://cocainediesel.fun/'],
+		//['Cocaine Diesel', new Color( 255, 204, 38 ), new Color( 0, 0, 0 ), 'https://cocainediesel.fun/'],
 		['NO TYPE BEAT', new Color( 54, 0, 28 ), new Color( 255, 255, 255 ), 'https://www.youtube.com/@notypebeat1150'],
 		['Spotify', new Color( 2, 212, 85 ), new Color( 0, 0, 0 ), 'https://open.spotify.com/artist/2rE2eyZAeLXhVvT4M0rPcQ'],
 		['Drummer at Cosmic Cow', new Color( 29, 29, 29 ), new Color( 255, 255, 255 ), 'https://cosmiccowband.bandcamp.com/'],

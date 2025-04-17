@@ -28,7 +28,7 @@ void main() {
 	pos.x *= 2.0;
 	pos.y = pos.y;
 
-	gl_FragColor.rgb = fun(pos, time, colors, numNodes); 
+	gl_FragColor.rgb = fun(pos, time, colors, numNodes) * (1.0 - length(pos - vec2(0.0, 0.5)) * 0.75); 
 }`;
 
 
