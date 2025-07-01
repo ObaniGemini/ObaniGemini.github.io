@@ -1,5 +1,9 @@
 class Button {
 	constructor( text = "", bg_color = new Color(), text_color = new Color(), href = "" ) {
+		this.currentHeight = 0.0
+		this.goalHeight = 0.0
+		this.stepHeight = 0.0
+
 		this.button = document.createElement( "a" )
 		this.button.className = "mainButton"
 
@@ -23,6 +27,7 @@ class Button {
 		document.body.appendChild(this.button)
 
 		this.button.onmouseout()
+		this.animate()
 	}
 
 	setHover(b) {
@@ -38,11 +43,26 @@ class Button {
 		this.button.style.backgroundColor = this.backgroundColor.rgba()
 	}
 
+	animate() {
+		let oldHeight = this.currentHeight;
+		this.currentHeight += this.stepHeight
+		this.button.style.fontSize = this.currentHeight.toString() + 'px'
+
+		if ((this.currentHeight >= this.goalHeight && this.stepHeight > 0.0) || (this.currentHeight <= this.goalHeight && this.stepHeight < 0.0)) {
+			this.currentHeight = this.goalHeight;
+		} else {
+			window.requestAnimationFrame(this.animate.bind(this))
+		}
+	}
+
 	resize( height = 0.0 ) {
 		this.height = height
 
-		let factor = this.hovered ? 0.45 : 0.5
+		let factor = this.hovered ? 0.42 : 0.5
+		this.goalHeight = (height * factor * (72.0 / 96.0))
+		this.stepHeight = (this.goalHeight - this.currentHeight) * 0.1
 		this.button.style.height = height.toString() + 'px'
-		this.button.style.fontSize = (height * factor * (72.0 / 96.0)).toString() + 'px'
+
+		window.requestAnimationFrame(this.animate.bind(this))
 	}
 }
