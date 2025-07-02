@@ -15,7 +15,6 @@ class Button {
 		this.button.style.backgroundColor = this.backgroundColor.rgba()
 		this.button.style.color = this.textColor.rgba()
 
-
 		this.button.onclick = () => {
 			console.log("Button '" + text + "' pressed")
 			window.open(href)
@@ -27,7 +26,6 @@ class Button {
 		document.body.appendChild(this.button)
 
 		this.button.onmouseout()
-		this.animate()
 	}
 
 	setHover(b) {
@@ -44,13 +42,17 @@ class Button {
 	}
 
 	animate() {
-		let oldHeight = this.currentHeight;
+		let oldHeight = this.currentHeight
 		this.currentHeight += this.stepHeight
+
+		let ended = (this.currentHeight >= this.goalHeight && this.stepHeight > 0.0) || (this.currentHeight <= this.goalHeight && this.stepHeight < 0.0)
+		if (ended) {
+			this.currentHeight = this.goalHeight
+		}
+
 		this.button.style.fontSize = this.currentHeight.toString() + 'px'
 
-		if ((this.currentHeight >= this.goalHeight && this.stepHeight > 0.0) || (this.currentHeight <= this.goalHeight && this.stepHeight < 0.0)) {
-			this.currentHeight = this.goalHeight;
-		} else {
+		if (!ended) {
 			window.requestAnimationFrame(this.animate.bind(this))
 		}
 	}
@@ -58,9 +60,10 @@ class Button {
 	resize( height = 0.0 ) {
 		this.height = height
 
-		let factor = this.hovered ? 0.42 : 0.5
+		let factor = this.hovered ? 0.5 : 0.42
 		this.goalHeight = (height * factor * (72.0 / 96.0))
 		this.stepHeight = (this.goalHeight - this.currentHeight) * 0.1
+
 		this.button.style.height = height.toString() + 'px'
 
 		window.requestAnimationFrame(this.animate.bind(this))
