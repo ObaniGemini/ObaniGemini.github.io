@@ -1,5 +1,8 @@
 class Button {
-	constructor( text = "", bg_color = new Color(), text_color = new Color(), href = "" ) {
+	constructor( index = 0, description = new Description(0), text = "", bg_color = new Color(), text_color = new Color(), href = "", description_text = "" ) {
+		this.index = index
+		this.description = description
+
 		this.currentHeight = 0.0
 		this.goalHeight = 0.0
 		this.stepHeight = 0.0
@@ -15,6 +18,8 @@ class Button {
 		this.button.style.backgroundColor = this.backgroundColor.rgba()
 		this.button.style.color = this.textColor.rgba()
 
+		this.desciptionText = description_text
+
 		this.button.onclick = () => {
 			console.log("Button '" + text + "' pressed")
 			window.open(href)
@@ -28,12 +33,14 @@ class Button {
 		this.button.onmouseout()
 	}
 
-	setHover(b) {
-		this.hovered = b
+	setHover( hovered ) {
+		this.hovered = hovered
 
-		if(this.height) {
+		if( this.height ) {
 			this.resize(this.height)
 		}
+
+		this.description.setButton( this )
 	}
 
 	setAlpha( v = 1.0 ) {
