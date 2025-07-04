@@ -3,9 +3,7 @@ class Button {
 		this.index = index
 		this.description = description
 
-		this.currentHeight = 0.0
-		this.goalHeight = 0.0
-		this.stepHeight = 0.0
+		this.fontSize = new IFloat(0.0, true)
 
 		this.button = document.createElement( "a" )
 		this.button.className = "mainButton"
@@ -49,28 +47,16 @@ class Button {
 	}
 
 	animate() {
-		let oldHeight = this.currentHeight
-		this.currentHeight += this.stepHeight
+		this.button.style.fontSize = this.fontSize.step().toString() + 'px'
 
-		let ended = (this.currentHeight >= this.goalHeight && this.stepHeight > 0.0) || (this.currentHeight <= this.goalHeight && this.stepHeight < 0.0)
-		if (ended) {
-			this.currentHeight = this.goalHeight
-		}
-
-		this.button.style.fontSize = this.currentHeight.toString() + 'px'
-
-		if (!ended) {
+		if (!this.fontSize.finished) {
 			window.requestAnimationFrame(this.animate.bind(this))
 		}
 	}
 
 	resize( height = 0.0 ) {
 		this.height = height
-
-		let factor = this.hovered ? 0.5 : 0.42
-		this.goalHeight = (height * factor * (72.0 / 96.0))
-		this.stepHeight = (this.goalHeight - this.currentHeight) * 0.1
-
+		this.fontSize.set((height * (this.hovered ? 0.5 : 0.42) * (72.0 / 96.0)), 10)
 		this.button.style.height = height.toString() + 'px'
 
 		window.requestAnimationFrame(this.animate.bind(this))

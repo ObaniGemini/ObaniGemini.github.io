@@ -4,10 +4,10 @@ var description
 
 const main = () => {
 	let properties = [
-		['Gitlab', new Color( 255, 255, 255 ), new Color( 0, 0, 0 ), 'https://gitlab.com/obani/', 'Personal code-heavy oriented projects'],
-		['GitHub', new Color( 0, 0, 0 ), new Color( 255, 255, 255 ), 'https://github.com/ObaniGemini/', 'More diverse projects and contributions'],
+		['Gitlab', new Color( 255, 255, 255 ), new Color( 0, 0, 0 ), 'https://gitlab.com/obani/', 'Personal code-heavy oriented projects (sound_exp, SimpleGoNinjaBuilder,...)'],
+		['GitHub', new Color( 0, 0, 0 ), new Color( 255, 255, 255 ), 'https://github.com/ObaniGemini/', 'More diverse projects and contributions (Godot projects, forks,...)'],
 		['Itch.io', new Color( 255, 255, 255 ), new Color( 0, 0, 0 ), 'https://obanigarage.itch.io/', 'Jam games'],
-		['PropFight on Steam', new Color( 23, 29, 37 ), new Color( 255, 255, 255 ), 'https://store.steampowered.com/app/2881590/PropFight/', 'A game I made, published on Steam'],
+		['PropFight on Steam', new Color( 23, 29, 37 ), new Color( 255, 255, 255 ), 'https://store.steampowered.com/app/2881590/PropFight/', 'A game I made, published on Steam (my main project at this moment)'],
 		//['Cocaine Diesel', new Color( 255, 204, 38 ), new Color( 0, 0, 0 ), 'https://cocainediesel.fun/', 'A game I worked on'],
 		['NO TYPE BEAT', new Color( 54, 0, 28 ), new Color( 255, 255, 255 ), 'https://www.youtube.com/@notypebeat1150', 'A music channel I run'],
 		['Spotify', new Color( 2, 212, 85 ), new Color( 0, 0, 0 ), 'https://open.spotify.com/artist/2rE2eyZAeLXhVvT4M0rPcQ', 'Basically the soundtrack to my game, and other stuff'],
